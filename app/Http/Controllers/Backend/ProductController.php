@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use Repositories\CategoryRepository;
 use Repositories\AttributeRepository;
-use Repositories\PostHistoryRepository;
+
 
 class ProductController extends Controller {
 
@@ -16,11 +16,11 @@ class ProductController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(ProductRepository $productRepo, CategoryRepository $categoryRepo, AttributeRepository $attributeRepo, PostHistoryRepository $postHistoryRepo) {
+    public function __construct(ProductRepository $productRepo, CategoryRepository $categoryRepo, AttributeRepository $attributeRepo) {
         $this->productRepo = $productRepo;
         $this->categoryRepo = $categoryRepo;
         $this->attributeRepo = $attributeRepo;
-        $this->postHistoryRepo = $postHistoryRepo;
+        
     }
 
     public function index() {
@@ -61,7 +61,7 @@ class ProductController extends Controller {
         $input['post_schedule'] = isset($input['post_schedule']) ? $input['post_schedule_submit'] : date('Y-m-d H:i:s');
         $product = $this->productRepo->create($input);
         //Thêm vào lịch sử đăng bài
-        $this->addPostHistory($product);
+        
         //Thêm danh mục sản phẩm
         $product->categories()->attach($input['category_id']);
         //Thêm thuộc tính sản phẩm
@@ -168,13 +168,6 @@ class ProductController extends Controller {
         return $attributes;
     }
 
-    public function addPostHistory($product) {
-
-        $post_history['item_id'] = $product->id;
-        $post_history['created_at'] = $product->created_at;
-        $post_history['updated_at'] = $product->post_schedule ?: $product->updated_at;
-        $post_history['module'] = 'product';
-        $this->postHistoryRepo->create($post_history);
-    }
+    
 
 }
