@@ -55,7 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::get('/user/edit_profile/{id}', ['as' => 'admin.user.index_profile', 'uses' => 'Backend\UserController@editProfile']);
     Route::post('/user/update_profile/{id}', ['as' => 'admin.user.update_profile', 'uses' => 'Backend\UserController@updateProfile']);
-    
+
     /* Quản lý quyền */
     Route::get('/role', ['as' => 'admin.role.index', 'uses' => 'Backend\RoleController@index']);
     Route::get('/role/create', ['as' => 'admin.role.create', 'uses' => 'Backend\RoleController@create']);
@@ -80,6 +80,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::post('/slide/update/{id}', ['as' => 'admin.slide.update', 'uses' => 'Backend\SlideController@update']);
     Route::delete('/slide/delete/{id}', ['as' => 'admin.slide.destroy', 'uses' => 'Backend\SlideController@destroy']);
 
+    /* Liên hệ*/
+    Route::get('/contact', ['as' => 'admin.contact.index', 'uses' => 'Backend\ContactController@index']);
+    Route::delete('/contact/delete/{id}', ['as' => 'admin.contact.destroy', 'uses' => 'Backend\ContactController@destroy']);
+    Route::get('/contact/show/{id}', ['as' => 'admin.contact.edit', 'uses' => 'Backend\ContactController@show']);
+    
     /* Đơn hàng*/
     Route::get('/order', ['as' => 'admin.order.index', 'uses' => 'Backend\OrderController@index']);
     Route::delete('/order/delete/{id}', ['as' => 'admin.order.destroy', 'uses' => 'Backend\OrderController@destroy']);

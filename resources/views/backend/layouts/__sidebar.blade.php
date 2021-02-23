@@ -99,11 +99,12 @@
                         <li class="nav-item"><a href="{{route('admin.menu.index')}}" class="nav-link">Menu</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('admin.order.index')}}" class="nav-link">
-                        <i class="icon-users"></i> 
-                        <span>Đơn hàng</span>
-                    </a>
+                <li class="nav-item nav-item-submenu">
+                    <a href="#" class="nav-link"><i class="icon-users"></i> <span>Khách hàng</span></a>
+                    <ul class="nav nav-group-sub" data-submenu-title="Khách hàng">
+                        <li class="nav-item"><a href="{{route('admin.contact.index')}}" class="nav-link">Liên hệ</a></li>
+                        <li class="nav-item"><a href="{{route('admin.order.index')}}" class="nav-link">Đơn hàng</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
